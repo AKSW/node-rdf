@@ -1,0 +1,24 @@
+{
+  "name": "node-rdf",
+  "version": "0.0.0",
+  "description": "Fork of node-rdf using NPM, Grunt and Browserify.",
+  "main": "lib/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AKSW/node-rdf.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AKSW/node-rdf/issues"
+  },
+  "homepage": "https://github.com/AKSW/node-rdf",
+  "dependencies": {
+    "iri": "^1.1.1"
+  }
+}
