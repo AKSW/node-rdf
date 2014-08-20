@@ -1,0 +1,15 @@
+{
+  "name": "node-rdf",
+  "main": "web/web.js",
+  "version": "1.0.0",
+  "homepage": "https://github.com/AKSW/node-rdf",
+  "authors": [
+    "Andy Wermke <andy@dev.next-step-software.com>"
+  ],
+  "description": "Fork of node-rdf using NPM, Grunt and Browserify.",
+  "moduleType": [
+    "amd",
+    "globals"
+  ],
+  "license": "ISC"
+}

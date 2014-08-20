@@ -1,6 +1,6 @@
 {
   "name": "node-rdf",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Fork of node-rdf using NPM, Grunt and Browserify.",
   "main": "lib/index.js",
   "directories": {
