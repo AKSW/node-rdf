@@ -7,9 +7,11 @@
     "Andy Wermke <andy@dev.next-step-software.com>"
   ],
   "description": "Fork of node-rdf using NPM, Grunt and Browserify.",
+  "main": "web/web.js",
   "moduleType": [
     "amd",
     "globals"
   ],
-  "license": "ISC"
+  "license": "ISC",
+  "ignore": []
 }
