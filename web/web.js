@@ -1380,14 +1380,27 @@ api.xsdns = api.ns('http://www.w3.org/2001/XMLSchema#');
 
 },{"./Builtins":1,"./Graph.js":3,"./Profile.js":4,"./RDFEnvironment.js":5,"./RDFNode.js":6,"./TurtleParser.js":7}],9:[function(require,module,exports){
 
-var rdf = require('./rdf');
+(function() {
+  var rdf = require('./rdf');
 
-window.rdf = rdf;
+  if (typeof define === 'function') {
 
-if (typeof Event === 'function') {
-  var event = new Event('rdfready');
-  window.dispatchEvent(event);
-}
+    // AMD module
+
+    define('rdf', [], function() {
+      return rdf;
+    });
+
+  } else {
+
+    window.rdf = rdf;
+
+    if (typeof Event === 'function') {
+      window.dispatchEvent( new Event('rdfready') );
+    }
+
+  }
+})();
 
 },{"./rdf":8}],10:[function(require,module,exports){
 if (typeof Object.create === 'function') {
