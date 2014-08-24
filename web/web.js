@@ -1072,15 +1072,18 @@ Turtle.prototype.parseStatements = function(s) {
 	while(s.length > 0) {
 		s = this.skipWS(s);
 		if(s.length == 0) return true;
-		var type, offset = originalLength - s.length;
+		var type, subject, offset = originalLength - s.length;
 		if(s.charAt(0)=="@" || s.substring(0,4).toUpperCase()=='BASE' || s.substring(0,6).toUpperCase()=='PREFIX') {
 			s = this.consumeDirective(s);
 			type = 'directive';
 		} else {
+			var t = this.t();
+			this.consumeStatementSubject(s, t);
 			s = this.consumeStatement(s);
+			subject = t.o.toCanonical();
 			type = 'statement';
 		}
-		self.blocks.push({ type: type, start: offset, length: originalLength - s.length - offset });
+		self.blocks.push({ type: type, subject: subject, start: offset, length: originalLength - s.length - offset });
 		s = this.skipWS(s);
 	}
 	return true;
@@ -1306,8 +1309,7 @@ Turtle.prototype.consumeQName = function(s, t) {
 	t.o = env.createNamedNode(this.environment.resolve(qname));
 	return s.slice(qname.length);
 };
-Turtle.prototype.consumeStatement = function(s) {
-	var t = this.t();
+Turtle.prototype.consumeStatementSubject = function(s, t) {
 	switch(s.charAt(0)) {
 		case "[":
 			s = this.consumeBlankNode(s, t);
@@ -1318,6 +1320,11 @@ Turtle.prototype.consumeStatement = function(s) {
 		case "<": s = this.consumeURI(s, t); break;
 		default: s = this.consumeQName(s, t); break;
 	}
+	return s;
+};
+Turtle.prototype.consumeStatement = function(s) {
+	var t = this.t();
+	s = this.consumeStatementSubject(s, t);
 	s = this.consumePredicateObjectList(this.skipWS(s), t);
 	this.expect(s, ".");
 	return s.slice(1);
